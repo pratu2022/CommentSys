@@ -1,4 +1,6 @@
 <?php 
+session_start();
+include('dbcon.php');
 
 if(isset($_POST['login_btn']))
 {
@@ -14,6 +16,11 @@ if(isset($_POST['login_btn']))
         
         $user_id = $userdata['id'];
         $username = $userdata['fullname'];
+        $_SESSION['auth_user_id'] = $user_id;
+        $_SESSION['authuser_name'] = $username;
+        $_SESSION['status'] = "Login Successfully";
+        header('Location: index.php');
+        exit();
     }
     else
     {
